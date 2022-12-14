@@ -14,7 +14,7 @@ my $usage = "
 
 Synopsis:
 
-gal_example_seq_features  --features feature.gff3
+gal_gvf_HGVS  --features feature.gff3
 
 Description:
 

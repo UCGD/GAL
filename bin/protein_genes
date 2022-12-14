@@ -72,7 +72,7 @@ if ($clean) {
         $no_stop++;
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

@@ -17,7 +17,7 @@ my $usage = "
 
 Synopsis:
 
-gal_example_seq_features feature.gff3 genome.fasta
+dump_CDC_sequence feature.gff3 genome.fasta
 
 Description:
 
@@ -37,7 +37,7 @@ if (! $opt_success) {
                               'Use gal_dump_CDS_sequence --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

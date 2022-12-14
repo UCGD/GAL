@@ -17,7 +17,7 @@ my $usage = "
 
 Synopsis:
 
-gal_example_seq_features feature.gff3 genome.fasta
+gff_tool_gal feature.gff3 genome.fasta
 
 Description:
 
@@ -252,7 +252,7 @@ my $opt_success = GetOptions('help|h'                 =>  \$help,
 			    );
 
 die $usage unless $opt_success;
-if ($help) {
+if ($help || !@ARGV) {
   print $usage;
   exit(0);
 }

@@ -46,7 +46,7 @@ my $opt_success = GetOptions('help|h'   => \$help,
 			     'type|t=s' => \$type);
 
 die $usage unless $opt_success;
-if ($help) {
+if ($help  || !@ARGV) {
   print $usage;
   exit(0);
 }

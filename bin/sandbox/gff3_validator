@@ -41,7 +41,7 @@ if (! $opt_success) {
                               'Use gff3_validator --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

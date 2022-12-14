@@ -11,9 +11,9 @@ my $usage = "
 
 Synopsis:
 
-feature_overlaps --feature_dsn 'dbi:mysql:feature_db' --feature_type 'SNP' \
-		 --query_dsn   'dbi:mysql:feature_db'   --query_type 'CDS' \
-		 --expanded
+feature_overlaps_dbi --feature_dsn 'dbi:mysql:feature_db' --feature_type 'SNP' \
+		     --query_dsn   'dbi:mysql:feature_db'   --query_type 'CDS' \
+		     --expanded
 
 Description:
 
@@ -84,7 +84,10 @@ my $opt_success = GetOptions('help'           => \$help,
 			     'ids'            => \$ids,
 			    );
 
-die $usage if $help || ! $opt_success;
+if($help || ! $opt_success || !@ARGV){
+    print $usage;
+    exit(0);
+}
 
 die $usage unless ($feature_dsn && $query_dsn);
 

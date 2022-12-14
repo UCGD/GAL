@@ -49,7 +49,7 @@ if (! $opt_success) {
                               'Use gvf_validator --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

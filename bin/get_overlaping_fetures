@@ -3,6 +3,10 @@
 use strict;
 use warnings;
 use Getopt::Long;
+
+use FindBin;
+use lib "$FindBin::RealBin/../lib";
+
 use GAL::Annotation;
 
 #-----------------------------------------------------------------------------
@@ -43,7 +47,7 @@ if (! $opt_success) {
                               'Use gff_tool --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

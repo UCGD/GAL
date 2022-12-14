@@ -27,7 +27,7 @@ my ($help);
 my $opt_success = GetOptions('help'    => \$help,
 			      );
 
-if ($help) {
+if ($help || !@ARGV) {
     print $usage;
     exit(0);
 }

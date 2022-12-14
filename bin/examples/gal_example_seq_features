@@ -24,15 +24,14 @@ with sequence features in GAL.
 
 my ($help);
 
-my $opt_success = GetOptions('help|h'            => \$help,
+my $opt_success = GetOptions('help|h' => \$help,
 			      );
 
 die $usage unless $opt_success;
-if ($help) {
+if ($help || !@ARGV) {
   print $usage;
   exit(0);
 }
-
 
 my ($gff3_file, $fasta_file) = @ARGV;
 

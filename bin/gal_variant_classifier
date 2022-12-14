@@ -17,7 +17,7 @@ my $usage = "
 
 Synopsis:
 
-variant_classifier --fasta path/to/fasta --features feature.gff3 \
+gal_variant_classifier --fasta path/to/fasta --features feature.gff3 \
 		   --variants variant.gff3
 
 Description:
@@ -61,7 +61,7 @@ if (! $opt_success) {
                               'Use gff_variant_clasifier --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

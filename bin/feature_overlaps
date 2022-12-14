@@ -37,7 +37,7 @@ if (! $opt_success) {
                               'Use gal_feature_overlaps --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

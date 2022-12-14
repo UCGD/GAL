@@ -73,7 +73,11 @@ my $opt_success = GetOptions('help'       => \$help,
 			     'assembly=s' => \$requested_assembly,
 			    );
 
-die $usage if $help || ! $opt_success;
+if($help || ! $opt_success || !@ARGV){
+    print $usage;
+    exit(0);
+}
+
 die $usage unless $requested_assembly;
 
 my $file = shift;

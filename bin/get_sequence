@@ -56,7 +56,7 @@ if (! $opt_success) {
                               'Use gal_getsequence --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

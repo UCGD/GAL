@@ -2,6 +2,10 @@
 use strict;
 use warnings;
 use Getopt::Long;
+
+use FindBin;
+use lib "$FindBin::RealBin/../lib";
+
 use GAL::Parser::gff3;
 
 #-----------------------------------------------------------------------------
@@ -35,7 +39,7 @@ if (! $opt_success) {
                               'Use add_reference_seq --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

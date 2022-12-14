@@ -17,7 +17,7 @@ my $usage = "
 
 Synopsis:
 
-gal_protein_sequence feature.gff3 sequence.fasta
+CDS_sequence feature.gff3 sequence.fasta
 
 Description:
 
@@ -42,7 +42,7 @@ if (! $opt_success) {
                               'Use gal_CDS_sequence --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

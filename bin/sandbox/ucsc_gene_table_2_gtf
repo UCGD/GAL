@@ -37,7 +37,10 @@ my $opt_success = GetOptions('help'    => \$help,
 			     'table=s' => \$table,
 			      );
 
-die $usage if $help || ! $opt_success;
+if($help || ! $opt_success || !@ARGV){
+    print $usage;
+    exit(0);
+}
 
 my $file = shift;
 die $usage unless $file;

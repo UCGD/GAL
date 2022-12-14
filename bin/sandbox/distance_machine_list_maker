@@ -3,7 +3,7 @@ use strict;
 use lib '/Users/myandell/lib';
 use warnings;
 use FileHandle;
-use PostData;
+#use PostData;
 use Getopt::Std;
 use vars qw($opt_o $opt_n $opt_e $opt_l);
 getopts('o:n:l:'); 
@@ -30,7 +30,10 @@ OPTIONS: -o <out dir> where to write the files
 #--------------------------------------------------------------------------------
 
 
-die $usage unless args_okay();
+if(!args_okay()){
+    print $usage;
+    exit(0);
+}
 
 my $files = parse_list_file($opt_l);
 

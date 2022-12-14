@@ -37,7 +37,7 @@ if (! $opt_success) {
                               'Use gal_CDS_footprint --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

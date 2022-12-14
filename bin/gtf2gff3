@@ -58,8 +58,9 @@ eval{$opt_success = GetOptions('help'      => \$help,
 
 handle_message('FATAL', 'invalid_options', $@) unless $opt_success;
 
-if ($help) {
-    print `perldoc $0`;
+if ($help || !@ARGV) {
+    #print `perldoc $0`;
+    print $usage;
     exit;
 }
 

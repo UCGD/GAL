@@ -6,8 +6,10 @@ use List::Util;
 use List::MoreUtils;
 use Statistics::Descriptive;
 use Set::IntSpan::Fast;
-use FindBin;
 use Template;
+
+use FindBin;
+use lib "$FindBin::RealBin/../lib";
 
 $| = 1;
 
@@ -263,7 +265,7 @@ to the altered copy of the feature.  All filters given are applied.
 		  Pass a Template Toolkit
 		  (http://www.template-toolkit.org/) formatted
 		  template and gff_tool will pass the variant data to
-		  the templating engine.  See the GAL/templates
+		  the templating engine.  See the lib/GAL/templates
 		  directory for example templates.
 
   validate|v
@@ -558,7 +560,7 @@ if (! $opt_success) {
 			      'Use gff_tool --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }
@@ -2118,7 +2120,7 @@ sub validate {
 #    template	  Pass a Template Toolkit
 #                 (http://www.template-toolkit.org/) formatted
 #		  template and gff_tool will pass the variant data to
-#		  the templating engine.  See the GAL/templates
+#		  the templating engine.  See the lib/GAL/templates
 #		  directory for example templates.
 #-----------------------------------------------------------------------------
 
@@ -2134,10 +2136,16 @@ sub template {
     handle_message('FATAL', 'failed_to_load_module', 'Template');
   }
 
-  for my $file (@{$files}) {
+  eval{require GAL::Base};
+  if ($@) {
+    print "$@\n";
+    handle_message('FATAL', 'failed_to_load_module', 'GAL::Base');
+  }
 
+  (my $include_path = $INC{'GAL/Base.pm'}) =~ s/Base.pm$/templates/;
+  for my $file (@{$files}) {
     my $tt = Template->new({
-			    INCLUDE_PATH => "$FindBin::RealBin/../../templates",
+			    INCLUDE_PATH => $include_path,
 			    ABSOLUTE     => 1,
 			    RELATIVE     => 1}) ||
 			      handle_message('FATAL', 'failed_to_initialize_template',

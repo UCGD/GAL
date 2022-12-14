@@ -10,7 +10,7 @@ my $usage = "
 
 Synopsis:
 
-build_genes transcripts.gff
+gff3_build_genes transcripts.gff
 
 Description:
 
@@ -39,7 +39,7 @@ if (! $opt_success) {
                               'Use build_genes --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }

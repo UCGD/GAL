@@ -3,6 +3,10 @@
 use strict;
 use warnings;
 use Getopt::Long;
+
+use FindBin;
+use lib "$FindBin::RealBin/../lib";
+
 use GAL::Annotation;
 
 #-----------------------------------------------------------------------------
@@ -36,7 +40,7 @@ my $opt_success = GetOptions('help|h'    => \$help,
 			      );
 
 die $usage unless $opt_success;
-if ($help) {
+if ($help || !@ARGV) {
   print $usage;
   exit(0);
 }

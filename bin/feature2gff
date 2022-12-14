@@ -2,12 +2,13 @@
 use strict;
 use warnings;
 use Getopt::Long;
-use GAL::Parser;
-use GAL::Writer::GFF3;
 use Bio::DB::Fasta;
 
 use FindBin;
 use lib "$FindBin::RealBin/../lib";
+
+use GAL::Parser;
+use GAL::Writer::GFF3;
 
 #-----------------------------------------------------------------------------
 #----------------------------------- MAIN ------------------------------------
@@ -72,7 +73,7 @@ if (! $opt_success) {
                               'Use feature2gff --help to see correct usage');
 }
 
-if ($help) {
+if ($help || !@ARGV) {
  print $usage;
  exit(0);
 }
@@ -80,7 +81,8 @@ if ($help) {
 my @files = @ARGV;
 
 if (! $parser) {
-  my @parsers = glob "${FindBin::Bin}/../lib/GAL/Parser/*";
+  (my $include_path = $INC{'GAL/Parser.pm'}) =~ s/.pm$//; # should be 'lib/GAL/Parser/'
+  my @parsers = glob "$include_path/*";
   @parsers = grep {$_ !~ /[\#\~]/} @parsers;
   map {s/^.*\///;s/\.pm$//;} @parsers;
   my $list = join "\n", sort @parsers;
